@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		552A031E2B6C7694003C5690 /* ParseAPI.plist in Resources */ = {isa = PBXBuildFile; fileRef = 552A031D2B6C7694003C5690 /* ParseAPI.plist */; };
-		552A03212B6C7958003C5690 /* APIHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A03202B6C7958003C5690 /* APIHelper.swift */; };
+		552A03212B6C7958003C5690 /* APIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 552A03202B6C7958003C5690 /* APIManager.swift */; };
 		CB13E51F2913A16C008F45BB /* PostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB13E51E2913A16C008F45BB /* PostCell.swift */; };
 		CB13E5212913B10B008F45BB /* DateFormatter+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = CB13E5202913B10B008F45BB /* DateFormatter+Extensions.swift */; };
 		CB69974E2910F705007EDA6B /* Filmotype-Jade.otf in Resources */ = {isa = PBXBuildFile; fileRef = CB69974C2910F704007EDA6B /* Filmotype-Jade.otf */; };
@@ -29,7 +29,7 @@
 
 /* Begin PBXFileReference section */
 		552A031D2B6C7694003C5690 /* ParseAPI.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = ParseAPI.plist; sourceTree = "<group>"; };
-		552A03202B6C7958003C5690 /* APIHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIHelper.swift; sourceTree = "<group>"; };
+		552A03202B6C7958003C5690 /* APIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIManager.swift; sourceTree = "<group>"; };
 		CB13E51E2913A16C008F45BB /* PostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCell.swift; sourceTree = "<group>"; };
 		CB13E5202913B10B008F45BB /* DateFormatter+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DateFormatter+Extensions.swift"; sourceTree = "<group>"; };
 		CB69974C2910F704007EDA6B /* Filmotype-Jade.otf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Filmotype-Jade.otf"; sourceTree = "<group>"; };
@@ -61,12 +61,12 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		552A031F2B6C7928003C5690 /* Utilities */ = {
+		552A031F2B6C7928003C5690 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
-				552A03202B6C7958003C5690 /* APIHelper.swift */,
+				552A03202B6C7958003C5690 /* APIManager.swift */,
 			);
-			path = Utilities;
+			path = Helpers;
 			sourceTree = "<group>";
 		};
 		CB13E51B2913A0E7008F45BB /* Login */ = {
@@ -137,7 +137,7 @@
 				CB13E51D2913A121008F45BB /* Feed */,
 				CB13E51C2913A100008F45BB /* Post */,
 				CB13E5222913B119008F45BB /* Extensions */,
-				552A031F2B6C7928003C5690 /* Utilities */,
+				552A031F2B6C7928003C5690 /* Helpers */,
 				CB73D39A290E3B4A00C12538 /* Main.storyboard */,
 				CB73D39D290E3B4C00C12538 /* Assets.xcassets */,
 				CB73D39F290E3B4C00C12538 /* LaunchScreen.storyboard */,
@@ -247,7 +247,7 @@
 				CB6997512911044D007EDA6B /* SignUpViewController.swift in Sources */,
 				CB13E5212913B10B008F45BB /* DateFormatter+Extensions.swift in Sources */,
 				CB73D397290E3B4A00C12538 /* SceneDelegate.swift in Sources */,
-				552A03212B6C7958003C5690 /* APIHelper.swift in Sources */,
+				552A03212B6C7958003C5690 /* APIManager.swift in Sources */,
 				CB7896F12936045A00635932 /* Post.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

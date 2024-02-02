@@ -6,8 +6,9 @@
 //
 
 import Foundation
+import ParseSwift
 
-struct APIHelper {
+struct APIManager {
     
     func getAPIProperties() -> (applicationId: String, clientKey: String, serverURL: String) {
         guard let filePath = Bundle.main.path(forResource: "ParseAPI", ofType: "plist") else {
@@ -27,5 +28,16 @@ struct APIHelper {
             preconditionFailure("Couldn't find '\(key)' in plist.") // Crash
         }
         return value
+    }
+    
+    func signUpUser(username: String, email: String, password: String, completion: @escaping (Result<User, ParseError>) -> Void) {
+        var newUser = User()
+        newUser.username = username
+        newUser.email = email
+        newUser.password = password
+        
+        newUser.signup { result in
+            completion(result)
+        }
     }
 }

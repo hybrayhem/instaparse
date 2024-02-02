@@ -7,9 +7,6 @@
 
 import UIKit
 
-// TODO: Pt 1 - Import Parse Swift
-import ParseSwift
-
 class SignUpViewController: UIViewController {
 
     @IBOutlet weak var usernameField: UITextField!
@@ -35,8 +32,18 @@ class SignUpViewController: UIViewController {
             return
         }
 
-        // TODO: Pt 1 - Parse user sign up
-
+        APIManager().signUpUser(username: username, email: email, password: password) { result in
+            switch result {
+            
+            case .success(let user):
+                print("✅ Successfully signed up user \(user)")
+                NotificationCenter.default.post(name: Notification.Name("login"), object: nil) // Success notification
+            
+            case .failure(let error):
+                self.showAlert(description: error.localizedDescription)
+            }
+            
+        }
     }
 
     private func showAlert(description: String?) {
