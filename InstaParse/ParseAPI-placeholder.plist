@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>applicationId</key>
+	<string>your_application_id</string>
+	<key>clientKey</key>
+	<string>your_client_key</string>
+	<key>serverURL</key>
+	<string>your_server_url</string>
+	<key>TODO:</key>
+	<string>Rename this file as ParseAPI.plist, and remove this key.</string>
+</dict>
+</plist>
