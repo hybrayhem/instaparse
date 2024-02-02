@@ -38,7 +38,7 @@ class LoginViewController: UIViewController {
             case .failure(let error):
                 self?.showAlert(description: error.localizedDescription)
             }
-            
+    
         }
 
     }

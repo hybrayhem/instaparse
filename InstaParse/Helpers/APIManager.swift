@@ -46,4 +46,12 @@ struct APIManager {
             completion(result)
         }
     }
+    
+    func logOutUser(completion: @escaping (Result<Void, ParseError>) -> Void) {
+        
+        // Removes the session from Keychain, and log out of linked services
+        User.logout { result in
+            completion(result)
+        }
+    }
 }
