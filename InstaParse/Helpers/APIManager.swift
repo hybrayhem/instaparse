@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import UIKit
 import ParseSwift
 
 struct APIManager {
@@ -48,9 +49,31 @@ struct APIManager {
     }
     
     func logOutUser(completion: @escaping (Result<Void, ParseError>) -> Void) {
-        
         // Removes the session from Keychain, and log out of linked services
         User.logout { result in
+            completion(result)
+        }
+    }
+    
+    func createPost(withImage image: UIImage?, caption: String?, completion: @escaping (Result<Post, ParseError>) -> Void) {
+        // create compressed jpeg
+        guard let image = image,
+              let imageData = image.jpegData(compressionQuality: 0.1) 
+        else {
+            // fail
+            let err = ParseError(otherCode: 0, message: "Invalid post image.")
+            return completion(.failure(err))
+        }
+        
+        let imageFile = ParseFile(name: "post_image.jpg", data: imageData)
+        
+        var post = Post()
+        post.imageFile = imageFile
+        post.caption = caption
+        post.user = User.current
+        
+        // save async
+        post.save { result in
             completion(result)
         }
     }

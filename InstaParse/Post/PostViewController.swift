@@ -35,13 +35,25 @@ class PostViewController: UIViewController {
     }
 
     @IBAction func onShareTapped(_ sender: Any) {
-        // Dismiss Keyboard
-        view.endEditing(true)
+        view.endEditing(true) // Dismiss Keyboard
+        
+        APIManager().createPost(withImage: pickedImage, caption: captionTextField.text) { [weak self] result in
+            DispatchQueue.main.async {
+                switch result {
+                case .success(let post):
+                    print("✅ Post Saved! \(post)")
+                    
+                    self?.navigationController?.popViewController(animated: true) // return to previous view controller
+                    
+                case .failure(let error):
+                    self?.showAlert(for: error)
+                }
+            }
+        }
     }
 
     @IBAction func onViewTapped(_ sender: Any) {
-        // Dismiss keyboard
-        view.endEditing(true)
+        view.endEditing(true) // Dismiss Keyboard
     }
 
     private func showAlert(description: String? = nil) {
@@ -54,6 +66,8 @@ class PostViewController: UIViewController {
     private func showAlert(for error: Error) {
         showAlert(description: error.localizedDescription)
     }
+    
+    private func imageToData() {}
 }
 
 extension PostViewController: PHPickerViewControllerDelegate {
