@@ -33,7 +33,6 @@ class SignUpViewController: UIViewController {
         }
 
         APIManager().signUpUser(username: username, email: email, password: password) { [weak self] result in
-            
             switch result {
             case .success(let user):
                 print("✅ Successfully signed up user \(user)")
@@ -42,7 +41,6 @@ class SignUpViewController: UIViewController {
             case .failure(let error):
                 self?.showAlert(description: error.localizedDescription)
             }
-            
         }
     }
 

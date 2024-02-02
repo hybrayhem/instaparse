@@ -21,21 +21,10 @@ struct NavigationManager {
     }
 
     func logOut(window: UIWindow?) {
-        APIManager().logOutUser { result in
-            switch result {
-
-            case .success:
-                // Set root to login screen
-                DispatchQueue.main.async {
-                    let storyboard = UIStoryboard(name: Constants.storyboardIdentifier, bundle: nil)
-                    let viewController = storyboard.instantiateViewController(withIdentifier: Constants.loginNavigationControllerIdentifier)
-                    window?.rootViewController = viewController
-                }
-            
-            case .failure(let error):
-                print("❌ Log out error: \(error)")
-            }
-
+        DispatchQueue.main.async {
+            let storyboard = UIStoryboard(name: Constants.storyboardIdentifier, bundle: nil)
+            let viewController = storyboard.instantiateViewController(withIdentifier: Constants.loginNavigationControllerIdentifier)
+            window?.rootViewController = viewController
         }
     }
 }

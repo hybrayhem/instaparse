@@ -29,7 +29,6 @@ class LoginViewController: UIViewController {
         }
 
         APIManager().logInUser(username: username, password: password) { [weak self] result in
-            
             switch result {
             case .success(let user):
                 print("✅ Successfully logged in as \(user)")
@@ -38,7 +37,6 @@ class LoginViewController: UIViewController {
             case .failure(let error):
                 self?.showAlert(description: error.localizedDescription)
             }
-    
         }
 
     }

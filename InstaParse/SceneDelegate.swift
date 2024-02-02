@@ -18,8 +18,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         NotificationCenter.default.addObserver(forName: Notification.Name("login"), object: nil, queue: OperationQueue.main) { [weak self] _ in
             self?.navigationManager.login(window: self?.window)
         }
+        
         NotificationCenter.default.addObserver(forName: Notification.Name("logout"), object: nil, queue: OperationQueue.main) { [weak self] _ in
-            self?.navigationManager.logOut(window: self?.window)
+            APIManager().logOutUser { [weak self] result in
+                switch result {
+                case .success:
+                    self?.navigationManager.logOut(window: self?.window)
+                
+                case .failure(let error):
+                    print("❌ Log out error: \(error)")
+                }
+            }
         }
         
         // Check for cached user for persisted log in
