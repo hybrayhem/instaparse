@@ -7,9 +7,6 @@
 
 import UIKit
 
-// TODO: Pt 1 - Import Parse Swift
-
-
 class LoginViewController: UIViewController {
 
     @IBOutlet weak var usernameField: UITextField!
@@ -31,7 +28,18 @@ class LoginViewController: UIViewController {
             return
         }
 
-        // TODO: Pt 1 - Log in the parse user
+        APIManager().logInUser(username: username, password: password) { [weak self] result in
+            
+            switch result {
+            case .success(let user):
+                print("✅ Successfully logged in as \(user)")
+                NotificationCenter.default.post(name: Notification.Name("login"), object: nil) // Success notification
+            
+            case .failure(let error):
+                self?.showAlert(description: error.localizedDescription)
+            }
+            
+        }
 
     }
 

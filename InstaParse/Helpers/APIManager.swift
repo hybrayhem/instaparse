@@ -40,4 +40,10 @@ struct APIManager {
             completion(result)
         }
     }
+    
+    func logInUser(username: String, password: String, completion: @escaping (Result<User, ParseError>) -> Void) {
+        User.login(username: username, password: password) { result in
+            completion(result)
+        }
+    }
 }

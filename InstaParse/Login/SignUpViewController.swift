@@ -32,15 +32,15 @@ class SignUpViewController: UIViewController {
             return
         }
 
-        APIManager().signUpUser(username: username, email: email, password: password) { result in
-            switch result {
+        APIManager().signUpUser(username: username, email: email, password: password) { [weak self] result in
             
+            switch result {
             case .success(let user):
                 print("✅ Successfully signed up user \(user)")
                 NotificationCenter.default.post(name: Notification.Name("login"), object: nil) // Success notification
             
             case .failure(let error):
-                self.showAlert(description: error.localizedDescription)
+                self?.showAlert(description: error.localizedDescription)
             }
             
         }
