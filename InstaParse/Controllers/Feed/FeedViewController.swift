@@ -36,10 +36,21 @@ class FeedViewController: UIViewController {
     }
 
     private func queryPosts() {
-        // TODO: Pt 1 - Query Posts
-// https://github.com/parse-community/Parse-Swift/blob/3d4bb13acd7496a49b259e541928ad493219d363/ParseSwift.playground/Pages/2%20-%20Finding%20Objects.xcplaygroundpage/Contents.swift#L66
-
-
+        // define query
+        let query = Post.query()
+            .include("user")
+            .order([.descending("createdAt")])
+        
+        // fetch query async
+        query.find { [weak self] result in
+            switch result {
+            case .success(let posts):
+                self?.posts = posts // update local posts
+            
+            case .failure(let error):
+                Alert(self).showError(for: error)
+            }
+        }
     }
 
     @IBAction func onLogOutTapped(_ sender: Any) {
@@ -54,13 +65,6 @@ class FeedViewController: UIViewController {
         let cancelAction = UIAlertAction(title: "Cancel", style: .cancel)
         alertController.addAction(logOutAction)
         alertController.addAction(cancelAction)
-        present(alertController, animated: true)
-    }
-
-    private func showAlert(description: String? = nil) {
-        let alertController = UIAlertController(title: "Oops...", message: "\(description ?? "Please try again...")", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
         present(alertController, animated: true)
     }
 }

@@ -84,6 +84,36 @@
 			path = Utilities;
 			sourceTree = "<group>";
 		};
+		557D7D352B6E420E007C5620 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CB73D39A290E3B4A00C12538 /* Main.storyboard */,
+				CB73D39F290E3B4C00C12538 /* LaunchScreen.storyboard */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		557D7D362B6E4222007C5620 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CB13E51B2913A0E7008F45BB /* Login */,
+				CB13E51D2913A121008F45BB /* Feed */,
+				CB13E51C2913A100008F45BB /* Post */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		557D7D372B6E425E007C5620 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CB73D39D290E3B4C00C12538 /* Assets.xcassets */,
+				552A031D2B6C7694003C5690 /* ParseAPI.plist */,
+				557D7D302B6D9EB5007C5620 /* ParseAPI-placeholder.plist */,
+				CB6997472910E7E3007EDA6B /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
 		CB13E51B2913A0E7008F45BB /* Login */ = {
 			isa = PBXGroup;
 			children = (
@@ -147,20 +177,14 @@
 			children = (
 				CB73D394290E3B4A00C12538 /* AppDelegate.swift */,
 				CB73D396290E3B4A00C12538 /* SceneDelegate.swift */,
+				CB73D3A2290E3B4C00C12538 /* Info.plist */,
 				CB7896ED2935DB4100635932 /* Models */,
 				552A031F2B6C7928003C5690 /* Helpers */,
 				557D7D322B6E3D07007C5620 /* Utilities */,
 				CB13E5222913B119008F45BB /* Extensions */,
-				CB13E51B2913A0E7008F45BB /* Login */,
-				CB13E51D2913A121008F45BB /* Feed */,
-				CB13E51C2913A100008F45BB /* Post */,
-				CB73D39A290E3B4A00C12538 /* Main.storyboard */,
-				CB73D39D290E3B4C00C12538 /* Assets.xcassets */,
-				CB73D39F290E3B4C00C12538 /* LaunchScreen.storyboard */,
-				CB73D3A2290E3B4C00C12538 /* Info.plist */,
-				552A031D2B6C7694003C5690 /* ParseAPI.plist */,
-				557D7D302B6D9EB5007C5620 /* ParseAPI-placeholder.plist */,
-				CB6997472910E7E3007EDA6B /* Fonts */,
+				557D7D362B6E4222007C5620 /* Controllers */,
+				557D7D352B6E420E007C5620 /* Views */,
+				557D7D372B6E425E007C5620 /* Resources */,
 			);
 			path = InstaParse;
 			sourceTree = "<group>";
