@@ -46,7 +46,7 @@ class PostViewController: UIViewController {
                     self?.navigationController?.popViewController(animated: true) // return to previous view controller
                     
                 case .failure(let error):
-                    self?.showAlert(for: error)
+                    Alert(self).showError(for: error)
                 }
             }
         }
@@ -54,17 +54,6 @@ class PostViewController: UIViewController {
 
     @IBAction func onViewTapped(_ sender: Any) {
         view.endEditing(true) // Dismiss Keyboard
-    }
-
-    private func showAlert(description: String? = nil) {
-        let alertController = UIAlertController(title: "Oops...", message: "\(description ?? "Please try again...")", preferredStyle: .alert)
-        let action = UIAlertAction(title: "OK", style: .default)
-        alertController.addAction(action)
-        present(alertController, animated: true)
-    }
-    
-    private func showAlert(for error: Error) {
-        showAlert(description: error.localizedDescription)
     }
     
     private func imageToData() {}
@@ -81,12 +70,12 @@ extension PostViewController: PHPickerViewControllerDelegate {
         provider.loadObject(ofClass: UIImage.self) { [weak self] object, error in
             
             guard let image = object as? UIImage else {
-                self?.showAlert() // Unable to cast to UIImage
+                Alert(self).showError() // Unable to cast to UIImage
                 return
             }
             
             if let error = error {
-                self?.showAlert(for: error)
+                Alert(self).showError(for: error)
             } else {
                 // Set image
                 DispatchQueue.main.async {
