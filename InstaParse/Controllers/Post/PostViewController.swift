@@ -58,7 +58,7 @@ class PostViewController: UIViewController {
             DispatchQueue.main.async {
                 switch result {
                 case .success(let post):
-                    print("✅ Post Saved! \(post)")
+                    print("✅ Post saved and user updated! \(post)")
                     
                     self?.navigationController?.popViewController(animated: true) // return to previous view controller
                     

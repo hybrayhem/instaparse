@@ -7,8 +7,6 @@
 
 import UIKit
 
-// TODO: Import Parse Swift
-
 
 class FeedViewController: UIViewController {
 
@@ -36,13 +34,7 @@ class FeedViewController: UIViewController {
     }
 
     private func queryPosts() {
-        // define query
-        let query = Post.query()
-            .include("user")
-            .order([.descending("createdAt")])
-        
-        // fetch query async
-        query.find { [weak self] result in
+        APIManager().fetchPosts { [weak self] result in
             switch result {
             case .success(let posts):
                 self?.posts = posts // update local posts
@@ -83,4 +75,4 @@ extension FeedViewController: UITableViewDataSource {
     }
 }
 
-extension FeedViewController: UITableViewDelegate { }
+extension FeedViewController: UITableViewDelegate {}
