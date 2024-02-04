@@ -11,7 +11,8 @@ import UIKit
 class FeedViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
-
+    private let refreshControl = UIRefreshControl()
+    
     private var posts = [Post]() {
         didSet {
             // Reload table view data any time the posts variable gets updated.
@@ -25,6 +26,9 @@ class FeedViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.allowsSelection = false
+        
+        tableView.refreshControl = refreshControl
+        refreshControl.addTarget(self, action: #selector(onPullToRefresh), for: .valueChanged)
     }
 
     override func viewWillAppear(_ animated: Bool) {
@@ -33,7 +37,7 @@ class FeedViewController: UIViewController {
         queryPosts()
     }
 
-    private func queryPosts() {
+    private func queryPosts(completion: (() -> Void)? = nil) {
         APIManager().fetchPosts { [weak self] result in
             switch result {
             case .success(let posts):
@@ -42,11 +46,20 @@ class FeedViewController: UIViewController {
             case .failure(let error):
                 Alert(self).showError(for: error)
             }
+            
+            completion?()
         }
     }
 
     @IBAction func onLogOutTapped(_ sender: Any) {
         showConfirmLogoutAlert()
+    }
+    
+    @objc private func onPullToRefresh() {
+        refreshControl.beginRefreshing()
+        queryPosts { [weak self] in
+            self?.refreshControl.endRefreshing()
+        }
     }
 
     private func showConfirmLogoutAlert() {
