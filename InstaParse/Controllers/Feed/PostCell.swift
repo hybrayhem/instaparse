@@ -15,7 +15,8 @@ class PostCell: UITableViewCell {
     @IBOutlet private weak var postImageView: UIImageView!
     @IBOutlet private weak var captionLabel: UILabel!
     @IBOutlet private weak var dateLabel: UILabel!
-
+    @IBOutlet weak var blurView: UIVisualEffectView!
+    
     private var imageDataRequest: DataRequest?
 
     func configure(with post: Post) {
@@ -45,6 +46,16 @@ class PostCell: UITableViewCell {
         // Date
         if let date = post.createdAt {
             dateLabel.text = DateFormatter.postFormatter.string(from: date)
+        }
+        
+        // Blur
+        if let currentUser = User.current,
+           let lastPostedDate = currentUser.lastPostedDate,
+           let postCreatedDate = post.createdAt,
+           let diffHours = Calendar.current.dateComponents([.hour], from: postCreatedDate, to: lastPostedDate).hour {
+            blurView.isHidden = abs(diffHours) < 24
+        } else {
+            blurView.isHidden = false
         }
     }
 
