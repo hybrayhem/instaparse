@@ -33,7 +33,24 @@ class PostViewController: UIViewController {
         picker.delegate = self
         present(picker, animated: true)
     }
+    
+    
+    @IBAction func onTakePhotoTapped(_ sender: Any) {
+        view.endEditing(true) // Dismiss Keyboard
+        
+        guard UIImagePickerController.isSourceTypeAvailable(.camera) else {
+            print("❌ 📷 Camera not available")
+            return
+        }
 
+        let imagePicker = UIImagePickerController()
+        imagePicker.sourceType = .camera
+        imagePicker.allowsEditing = true // allow crop etc.
+        imagePicker.delegate = self
+        
+        present(imagePicker, animated: true)
+    }
+    
     @IBAction func onShareTapped(_ sender: Any) {
         view.endEditing(true) // Dismiss Keyboard
         
@@ -84,5 +101,21 @@ extension PostViewController: PHPickerViewControllerDelegate {
                 }
             }
         }
+    }
+}
+
+extension PostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        picker.dismiss(animated: true)
+        
+        let image = (info[.editedImage] as? UIImage) 
+//                    ?? (info[.originalImage] as? UIImage) // uncomment if picker configuration is unknown
+        guard image != nil else {
+            print("❌📷 Unable to get image")
+            return
+        }
+
+        previewImageView.image = image
+        pickedImage = image
     }
 }

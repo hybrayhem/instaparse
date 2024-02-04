@@ -65,7 +65,7 @@ struct APIManager {
             return completion(.failure(err))
         }
         
-        let imageFile = ParseFile(name: "post_image.jpg", data: imageData)
+        let imageFile = ParseFile(name: "image.jpg", data: imageData)
         
         var post = Post()
         post.imageFile = imageFile
